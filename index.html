@@ -1,29 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
+    <style>
+        /* Стили для анимации появления текста */
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .fadeInText {
+            animation: fadeInText 0.5s ease-in-out forwards;
+        }
+    
+        
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloo Clicker.play</title>
-    <style>
-        #main {
-            text-align: center;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-    </style>
-</head>
-<body>
-    <div id="main">
-        <h1 id="score">0</h1>
-        <img src="Circle.png" alt="circle" id="button">
-    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="app.js" defer></script>
+    <title>ChaterSearch</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+</head>
+<body style="text-align: center; margin-left: 1%; margin-right: 1%;" class="text-bg-dark" >
+    <h1 style=" margin-bottom:10%; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ChaterSearch</h1>
+    
+    
+    <div id="answer"  class="form-control p-5 mb-5 text-bg-dark" style=" margin-bottom:10% ">Здесь будут ответы на ваши запросы</div>
+       
+    
+    
+    <div class="input-group text-bg-dark p-1 mb-1 " style="position: fixed; bottom: 1px; width: 99%; ">
+        <input type="text" class="form-control text-bg-dark" placeholder="Начните вводить текст..." onkeypress="handleKeyPress(event)" aria-label="Начните вводить текст..." aria-describedby="button-addon2" id="question">
+        <button onclick="answerQuestion()" class="btn btn-primary">Вперёд!</button>
+    </div>
     <script>
-      let counter = 0;
-      
-      document.getElementById('button').onclick = () => {
-        counter = counter + 1;
-        document.getElementById('score').innerText = counter;
-      };
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                answerQuestion();
+                const questionElement = document.getElementById('question');
+                questionElement.innerText = '';
+           }
+        }
+    
     </script>
 </body>
 </html>
+
